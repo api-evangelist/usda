@@ -1,0 +1,74 @@
+name: USDA API Plans and Pricing
+description: All USDA public APIs are provided as a free government service with no commercial pricing tiers. Access is governed by agency-specific terms of service and api.data.gov usage policies.
+url: https://api.data.gov/docs/developer-manual/
+created: '2026-06-13'
+modified: '2026-06-13'
+plans:
+  - name: Free (No Key)
+    description: Limited demo access available for the FoodData Central API using the DEMO_KEY without registration. Suitable for initial exploration and testing only.
+    url: https://fdc.nal.usda.gov/api-guide/
+    rateLimits:
+      - requests: 30
+        period: hour
+        scope: per IP address
+      - requests: 50
+        period: day
+        scope: per IP address
+    features:
+      - FoodData Central API read access
+      - JSON response format
+    apis:
+      - USDA FoodData Central API
+  - name: Free Registered
+    description: Standard free access tier available to all registered users across all USDA APIs. Registration requires providing a valid email address to receive an API key via api.data.gov or the agency-specific portal.
+    url: https://api.data.gov/docs/api-key/
+    cost: Free
+    rateLimits:
+      - requests: 1000
+        period: hour
+        scope: per IP address (FoodData Central)
+      - records: 50000
+        period: request
+        scope: per query (NASS Quick Stats)
+      - records: 100000
+        period: request
+        scope: per query (MyMarketNews registered users)
+    features:
+      - Access to all USDA public APIs
+      - JSON, CSV, and XML response formats (where available)
+      - API key-based authentication via api.data.gov
+      - Email notification of API updates and new releases
+      - Higher default rate limits than demo/unregistered access
+    registration:
+      - name: FoodData Central API Key
+        url: https://fdc.nal.usda.gov/api-key-signup/
+      - name: NASS Quick Stats API Key
+        url: https://quickstats.nass.usda.gov/api
+      - name: ERS ARMS API Key
+        url: https://www.ers.usda.gov/developer/data-apis
+      - name: MyMarketNews API Account
+        url: https://mymarketnews.ams.usda.gov/mymarketnews-api
+    apis:
+      - USDA FoodData Central API
+      - USDA NASS Quick Stats API
+      - USDA ERS ARMS Data API
+      - USDA AMS MyMarketNews MARS API
+      - USDA NASS CroplandCROS API
+      - USDA FSIS MPI Directory API
+  - name: Higher Rate Limits (On Request)
+    description: Elevated rate limits available on request for applications requiring more than the standard thresholds. Contact the respective USDA agency to request increased limits.
+    cost: Free
+    contact:
+      - name: FoodData Central Rate Limit Request
+        url: https://fdc.nal.usda.gov/contact/
+      - name: api.data.gov Support
+        url: https://api.data.gov/contact/
+    features:
+      - Custom rate limit thresholds above standard defaults
+      - Agency review and approval required
+      - No commercial cost
+notes:
+  - All USDA APIs are provided as free public government services under open data policies.
+  - FoodData Central data is public domain under CC0 1.0 Universal licensing.
+  - NASS data and reports are produced by the federal government and available for public use.
+  - api.data.gov is the shared interagency API management platform used by most USDA APIs.

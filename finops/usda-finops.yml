@@ -1,0 +1,63 @@
+name: USDA API FinOps
+description: Financial operations profile for USDA public APIs. All USDA APIs are free public government services with no licensing fees, subscription costs, or usage charges. Cost management focuses on infrastructure and integration development expenses rather than API consumption costs.
+url: https://www.usda.gov/
+created: '2026-06-13'
+modified: '2026-06-13'
+costModel:
+  type: Free Government Service
+  licensingCost: $0
+  subscriptionCost: $0
+  usageCost: $0
+  notes: USDA APIs are funded through federal appropriations and provided at no cost to users as part of the USDA open data initiative. Data produced by federal agencies is generally in the public domain.
+dataLicensing:
+  - api: USDA FoodData Central API
+    license: CC0 1.0 Universal (Public Domain)
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+    notes: No attribution required, but attribution to FoodData Central is requested as a courtesy.
+  - api: USDA NASS Quick Stats API
+    license: Public Domain (US Government Work)
+    notes: Federal government data is not subject to US copyright. Free for commercial and non-commercial use.
+  - api: USDA ERS ARMS Data API
+    license: Public Domain (US Government Work)
+    notes: Subject to USDA ERS API Terms of Service. Free for approved use cases.
+    termsUrl: https://www.ers.usda.gov/developer/api-terms-of-service
+  - api: USDA AMS MyMarketNews MARS API
+    license: Public Domain (US Government Work)
+    notes: Market news data produced by USDA AMS is publicly available.
+  - api: USDA NASS CroplandCROS API
+    license: Public Domain (US Government Work)
+    notes: Cropland Data Layer and related geospatial datasets are federal government works.
+  - api: USDA Forest Service Geospatial REST API
+    license: Public Domain (US Government Work)
+    notes: Forest Service geospatial data is freely available for public use.
+  - api: USDA FSIS MPI Directory API
+    license: Public Domain (US Government Work)
+    notes: Establishment and inspection data is made available to increase public health transparency.
+integrationCosts:
+  description: While API access itself is free, organizations integrating USDA APIs should budget for the following potential costs.
+  items:
+    - category: Developer Time
+      notes: Engineering effort to integrate API authentication (api.data.gov key management), handle pagination and record limits (especially NASS 50,000 record cap), and parse JSON/CSV/XML responses.
+    - category: Infrastructure
+      notes: If caching USDA data locally to avoid repeated requests and stay within rate limits, budget for storage and compute for a local cache or database layer.
+    - category: Data Pipeline
+      notes: Agricultural and nutritional datasets may require ETL pipelines for normalization, especially when combining data across multiple USDA APIs (FDC nutrition + NASS production + AMS market prices).
+    - category: API Key Management
+      notes: Multiple USDA agencies use separate API key registration systems (FDC, NASS, ERS, AMS). Budget time for managing multiple credentials.
+    - category: Monitoring
+      notes: Rate limit headers (X-RateLimit-Limit, X-RateLimit-Remaining on FDC) and record-count limits (NASS, AMS) require monitoring to prevent service interruptions.
+budgetRecommendations:
+  - recommendation: Register for API keys before building; DEMO_KEY limits are too restrictive for production use.
+  - recommendation: For NASS Quick Stats, implement filtering strategies to keep result sets under the 50,000 record limit rather than requesting full dataset dumps.
+  - recommendation: For MyMarketNews, register for a free account to increase the per-request record limit from 5,000 to 100,000.
+  - recommendation: Cache FoodData Central responses locally where practical to reduce request volume and avoid the 1,000 requests/hour limit.
+  - recommendation: Contact the specific USDA agency for higher rate limit requests if production workloads require it; no cost is involved.
+references:
+  - name: api.data.gov Developer Manual
+    url: https://api.data.gov/docs/developer-manual/
+  - name: FoodData Central API Guide
+    url: https://fdc.nal.usda.gov/api-guide/
+  - name: NASS Quick Stats API
+    url: https://quickstats.nass.usda.gov/api
+  - name: ERS API Terms of Service
+    url: https://www.ers.usda.gov/developer/api-terms-of-service

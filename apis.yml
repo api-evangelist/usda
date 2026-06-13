@@ -1,0 +1,148 @@
+aid: usda
+name: USDA
+description: The US Department of Agriculture provides a suite of free public REST APIs covering agricultural statistics, food and nutrition data, market news, food safety inspection records, crop and vegetation monitoring, and geospatial services. APIs are accessed through api.data.gov and agency-specific portals, all requiring a free API key.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/usda/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+type: Index
+tags:
+  - Agriculture
+  - Food Safety
+  - Nutrition
+  - Statistics
+  - Geospatial
+  - Market News
+  - Federal Government
+apis:
+  - name: USDA FoodData Central API
+    description: REST API providing access to the FoodData Central (FDC) nutrition database, covering over 250,000 food items with detailed nutrient data. Intended for developers building nutrition tracking and food-related applications.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://fdc.nal.usda.gov/api-guide/
+    baseURL: https://api.nal.usda.gov/fdc/v1
+    tags:
+      - Nutrition
+      - Food
+      - Nutrient Data
+    properties:
+      - type: Documentation
+        url: https://fdc.nal.usda.gov/api-guide/
+      - type: OpenAPI
+        url: https://fdc.nal.usda.gov/api-spec/fdc_api.html
+      - type: APIKeySignup
+        url: https://fdc.nal.usda.gov/api-key-signup/
+  - name: USDA NASS Quick Stats API
+    description: Programmatic access to official US agricultural statistics from the National Agricultural Statistics Service, including crop production estimates, livestock data, and Census of Agriculture results from 1997 onward.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://quickstats.nass.usda.gov/api
+    baseURL: https://quickstats.nass.usda.gov/api
+    tags:
+      - Agricultural Statistics
+      - Crops
+      - Livestock
+      - Census
+    properties:
+      - type: Documentation
+        url: https://quickstats.nass.usda.gov/api
+      - type: APIKeySignup
+        url: https://quickstats.nass.usda.gov/api
+  - name: USDA ERS ARMS Data API
+    description: Economic Research Service API providing access to data from the Agriculture Resource Management Survey (ARMS), covering farm finances, production practices, and resource use. Returns data in JSON format with attribute-based querying.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.ers.usda.gov/developer/data-apis/arms-data-api
+    baseURL: https://api.ers.usda.gov
+    tags:
+      - Farm Economics
+      - Agricultural Survey
+      - ARMS
+    properties:
+      - type: Documentation
+        url: https://www.ers.usda.gov/developer/data-apis/arms-data-api
+      - type: GitHubRepository
+        url: https://github.com/USDA-REE-ERS/ARMS-Data-API
+      - type: APIKeySignup
+        url: https://www.ers.usda.gov/developer/data-apis
+  - name: USDA AMS MyMarketNews MARS API
+    description: Market Analysis Reporting System (MARS) API providing programmatic access to USDA Agricultural Marketing Service commodity price and market news data including livestock, dairy, fruits, vegetables, and grains.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://mymarketnews.ams.usda.gov/mymarketnews-api
+    baseURL: https://marsapi.ams.usda.gov/services/v1.2
+    tags:
+      - Market News
+      - Commodity Prices
+      - Livestock
+      - Agriculture Markets
+    properties:
+      - type: Documentation
+        url: https://mymarketnews.ams.usda.gov/mars-api/getting-started
+      - type: APIKeySignup
+        url: https://mymarketnews.ams.usda.gov/mymarketnews-api
+  - name: USDA NASS CroplandCROS API
+    description: Geospatial API serving Cropland Data Layer (CDL) and related geospatial data at 30-meter resolution covering the continental US from 2008 onward, with historical data for select states back to 1997.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.nass.usda.gov/developer/index.php
+    baseURL: https://nassgeodata.gmu.edu/CropScapeService
+    tags:
+      - Cropland
+      - Geospatial
+      - Remote Sensing
+    properties:
+      - type: Documentation
+        url: https://www.nass.usda.gov/developer/index.php
+  - name: USDA Forest Service Geospatial REST API
+    description: ArcGIS Server REST API providing access to USDA Forest Service nationwide geospatial datasets including forest boundaries, land status, fire occurrence, and ecological data layers.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://data-usfs.hub.arcgis.com/
+    baseURL: https://apps.fs.usda.gov/arcx/rest/services
+    tags:
+      - Forest Service
+      - Geospatial
+      - ArcGIS
+      - Fire
+    properties:
+      - type: Documentation
+        url: https://data.fs.usda.gov/geodata/edw/mapServices.php
+      - type: Portal
+        url: https://data-usfs.hub.arcgis.com/
+  - name: USDA FSIS MPI Directory API
+    description: Food Safety and Inspection Service API providing real-time access to the Meat, Poultry and Egg Product Inspection Directory, including establishment location, size, species processed, and inspection status for all FSIS-regulated facilities.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.fsis.usda.gov/science-data/developer-resources/mpi-api
+    baseURL: https://www.fsis.usda.gov/fsis/api
+    tags:
+      - Food Safety
+      - Meat Inspection
+      - Poultry
+      - Public Health
+    properties:
+      - type: Documentation
+        url: https://www.fsis.usda.gov/science-data/developer-resources
+common:
+  - type: Website
+    url: https://www.usda.gov/
+  - type: Documentation
+    url: https://www.ers.usda.gov/developer/
+  - type: GitHubOrg
+    url: https://github.com/USDA
+  - type: GitHubOrg
+    url: https://github.com/USDA-REE-ERS
+  - type: Blog
+    url: https://www.usda.gov/media/blog
+  - type: Pricing
+    url: https://api.data.gov/docs/developer-manual/
+  - type: StatusPage
+    url: https://api.data.gov/status/
+  - type: X
+    url: https://twitter.com/USDA
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/usda
+  - type: Plans
+    url: plans/usda-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/usda-rate-limits.yml
+  - type: FinOps
+    url: finops/usda-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

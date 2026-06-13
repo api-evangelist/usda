@@ -1,0 +1,80 @@
+name: USDA API Rate Limits
+description: Rate limit policies across USDA public APIs. Most APIs are managed through api.data.gov which enforces per-key and per-IP limits. Individual agencies may apply additional record-level restrictions per query.
+url: https://api.data.gov/docs/developer-manual/
+created: '2026-06-13'
+modified: '2026-06-13'
+rateLimits:
+  - api: USDA FoodData Central API
+    url: https://fdc.nal.usda.gov/api-guide/
+    platform: api.data.gov
+    tiers:
+      - name: DEMO_KEY (unregistered)
+        requests: 30
+        period: hour
+        scope: per IP address
+        notes: Also limited to 50 requests per day per IP address
+      - name: Registered API Key
+        requests: 1000
+        period: hour
+        scope: per IP address
+        notes: Temporary 1-hour block applied if limit is exceeded. Higher limits available upon request.
+    errorResponse:
+      httpStatus: 429
+      behavior: Key temporarily blocked for 1 hour
+    headers:
+      - X-RateLimit-Limit
+      - X-RateLimit-Remaining
+  - api: USDA NASS Quick Stats API
+    url: https://quickstats.nass.usda.gov/api
+    platform: NASS self-hosted
+    tiers:
+      - name: Registered API Key
+        records: 50000
+        period: request
+        scope: per query
+        notes: Requests exceeding 50,000 records receive an error response. Filter parameters should be used to narrow result sets below this limit.
+    errorResponse:
+      message: "exceeds limit = 50000"
+  - api: USDA AMS MyMarketNews MARS API
+    url: https://mymarketnews.ams.usda.gov/mymarketnews-api
+    platform: AMS self-hosted
+    tiers:
+      - name: Unregistered
+        records: 5000
+        period: request
+        scope: per query
+      - name: Registered Account
+        records: 100000
+        period: request
+        scope: per query
+    notes: Registration is free. The API does not support open web browser calls; programmatic access only.
+  - api: USDA ERS ARMS Data API
+    url: https://www.ers.usda.gov/developer/data-apis/arms-data-api
+    platform: api.data.gov
+    tiers:
+      - name: Registered API Key
+        notes: Follows api.data.gov standard rate limits. Specific numeric limits not published; contact ERS for details.
+    contact: https://www.ers.usda.gov/contact-ers/
+  - api: USDA NASS CroplandCROS API
+    url: https://www.nass.usda.gov/developer/index.php
+    platform: NASS self-hosted
+    tiers:
+      - name: Public Access
+        notes: No published rate limits. Geospatial tile service; usage should follow reasonable access patterns.
+  - api: USDA Forest Service Geospatial REST API
+    url: https://apps.fs.usda.gov/arcx/rest/services
+    platform: ArcGIS Server (Esri)
+    tiers:
+      - name: Public Access
+        notes: ArcGIS REST API standard access. No published per-key rate limits; follows ArcGIS Server default throttling.
+  - api: USDA FSIS MPI Directory API
+    url: https://www.fsis.usda.gov/science-data/developer-resources/mpi-api
+    platform: FSIS self-hosted
+    tiers:
+      - name: Public Access
+        notes: No published rate limits. Contact FSIS developer resources for guidance.
+generalNotes:
+  - api.data.gov rate limits apply globally across all APIs using the shared service.
+  - Rate limit headers (X-RateLimit-Limit, X-RateLimit-Remaining) are returned on FoodData Central API responses.
+  - Higher rate limits for api.data.gov-managed APIs can be requested by contacting the specific USDA agency.
+  - Record-level limits (NASS, MyMarketNews) are enforced per query response, not per time window.
