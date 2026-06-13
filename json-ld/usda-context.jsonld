@@ -1,0 +1,246 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "usda": "https://api.nal.usda.gov/fdc/v1/",
+    "nass": "https://quickstats.nass.usda.gov/api/",
+    "ers": "https://api.ers.usda.gov/data/arms/",
+    "ams": "https://marsapi.ams.usda.gov/services/",
+    "fsis": "https://www.fsis.usda.gov/fsis/api/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+
+    "FoodItem": "schema:NutritionInformation",
+    "BrandedFoodItem": "schema:Product",
+    "FoundationFoodItem": "schema:Product",
+    "SRLegacyFoodItem": "schema:Product",
+    "SurveyFoodItem": "schema:Product",
+    "AbridgedFoodItem": "schema:Product",
+    "SearchResult": "schema:ItemList",
+
+    "fdcId": {
+      "@id": "usda:fdcId",
+      "@type": "xsd:integer"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "dataType": {
+      "@id": "usda:dataType",
+      "@type": "xsd:string"
+    },
+    "brandOwner": {
+      "@id": "schema:brand",
+      "@type": "xsd:string"
+    },
+    "gtinUpc": {
+      "@id": "schema:gtin",
+      "@type": "xsd:string"
+    },
+    "ingredients": {
+      "@id": "schema:ingredients",
+      "@type": "xsd:string"
+    },
+    "servingSize": {
+      "@id": "schema:servingSize",
+      "@type": "xsd:number"
+    },
+    "servingSizeUnit": {
+      "@id": "usda:servingSizeUnit",
+      "@type": "xsd:string"
+    },
+    "publicationDate": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:string"
+    },
+    "availableDate": {
+      "@id": "schema:datePosted",
+      "@type": "xsd:string"
+    },
+    "modifiedDate": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:string"
+    },
+    "brandedFoodCategory": {
+      "@id": "schema:category",
+      "@type": "xsd:string"
+    },
+    "scientificName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "ndbNumber": {
+      "@id": "usda:ndbNumber",
+      "@type": "xsd:string"
+    },
+    "foodCode": {
+      "@id": "usda:foodCode",
+      "@type": "xsd:string"
+    },
+    "foodClass": {
+      "@id": "usda:foodClass",
+      "@type": "xsd:string"
+    },
+    "isHistoricalReference": {
+      "@id": "usda:isHistoricalReference",
+      "@type": "xsd:boolean"
+    },
+    "foodNutrients": {
+      "@id": "schema:nutrition",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "labelNutrients": {
+      "@id": "usda:labelNutrients",
+      "@type": "@id"
+    },
+    "nutrient": {
+      "@id": "usda:nutrient",
+      "@type": "@id"
+    },
+    "amount": {
+      "@id": "schema:value",
+      "@type": "xsd:number"
+    },
+    "unitName": {
+      "@id": "schema:unitText",
+      "@type": "xsd:string"
+    },
+    "number": {
+      "@id": "usda:nutrientNumber",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "rank": {
+      "@id": "usda:rank",
+      "@type": "xsd:integer"
+    },
+    "dataPoints": {
+      "@id": "usda:dataPoints",
+      "@type": "xsd:integer"
+    },
+    "foodNutrientDerivation": {
+      "@id": "usda:derivation",
+      "@type": "@id"
+    },
+    "code": {
+      "@id": "usda:code",
+      "@type": "xsd:string"
+    },
+
+    "totalHits": {
+      "@id": "schema:numberOfItems",
+      "@type": "xsd:integer"
+    },
+    "currentPage": {
+      "@id": "usda:currentPage",
+      "@type": "xsd:integer"
+    },
+    "totalPages": {
+      "@id": "usda:totalPages",
+      "@type": "xsd:integer"
+    },
+    "foods": {
+      "@id": "schema:itemListElement",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "score": {
+      "@id": "usda:searchScore",
+      "@type": "xsd:number"
+    },
+
+    "commodity_desc": {
+      "@id": "nass:commodityDescription",
+      "@type": "xsd:string"
+    },
+    "statisticcat_desc": {
+      "@id": "nass:statisticCategoryDescription",
+      "@type": "xsd:string"
+    },
+    "state_alpha": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "county_name": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "agg_level_desc": {
+      "@id": "nass:aggregationLevel",
+      "@type": "xsd:string"
+    },
+    "year": {
+      "@id": "schema:temporalCoverage",
+      "@type": "xsd:integer"
+    },
+    "freq_desc": {
+      "@id": "nass:frequency",
+      "@type": "xsd:string"
+    },
+    "Value": {
+      "@id": "schema:value",
+      "@type": "xsd:string"
+    },
+    "unit_desc": {
+      "@id": "schema:unitText",
+      "@type": "xsd:string"
+    },
+
+    "establishment_number": {
+      "@id": "fsis:establishmentNumber",
+      "@type": "xsd:string"
+    },
+    "inspection_type": {
+      "@id": "fsis:inspectionType",
+      "@type": "xsd:string"
+    },
+    "activities": {
+      "@id": "fsis:activities",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "schema:size",
+      "@type": "xsd:string"
+    },
+
+    "slug_id": {
+      "@id": "ams:slugId",
+      "@type": "xsd:string"
+    },
+    "report_title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "published_date": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:string"
+    },
+
+    "state": {
+      "@id": "ers:state",
+      "@type": "xsd:string"
+    },
+    "category": {
+      "@id": "schema:category",
+      "@type": "xsd:string"
+    },
+    "report": {
+      "@id": "ers:report",
+      "@type": "xsd:string"
+    },
+    "variable": {
+      "@id": "ers:variable",
+      "@type": "xsd:string"
+    },
+    "farmtype": {
+      "@id": "ers:farmType",
+      "@type": "xsd:string"
+    }
+  }
+}

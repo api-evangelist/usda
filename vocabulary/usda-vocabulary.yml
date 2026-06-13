@@ -1,0 +1,271 @@
+name: USDA Vocabulary
+description: Controlled vocabulary of key terms used across USDA public APIs including FoodData Central, NASS Quick Stats, ERS ARMS, AMS Market News, CroplandCROS, Forest Service, and FSIS MPI Directory.
+url: https://raw.githubusercontent.com/api-evangelist/usda/main/vocabulary/usda-vocabulary.yml
+version: "1.0"
+created: "2026-06-13"
+modified: "2026-06-13"
+terms:
+
+  # ---- Food & Nutrition (FoodData Central) ----
+  - term: fdcId
+    label: FDC ID
+    description: Unique FoodData Central identifier assigned to each food item in the database.
+    domain: FoodData Central
+    type: identifier
+
+  - term: dataType
+    label: Data Type
+    description: Classification of a food item indicating its data source. Valid values are Branded, Foundation, SR Legacy, and Survey (FNDDS).
+    domain: FoodData Central
+    type: classification
+    values:
+      - Branded
+      - Foundation
+      - SR Legacy
+      - Survey (FNDDS)
+
+  - term: gtinUpc
+    label: GTIN/UPC
+    description: Global Trade Item Number or Universal Product Code identifying a branded food product.
+    domain: FoodData Central
+    type: identifier
+
+  - term: ndbNumber
+    label: NDB Number
+    description: Nutrient Database number used in the SR Legacy and Foundation food datasets.
+    domain: FoodData Central
+    type: identifier
+
+  - term: foodCode
+    label: Food Code
+    description: Code assigned to a food item in the USDA Food and Nutrient Database for Dietary Studies (FNDDS/Survey).
+    domain: FoodData Central
+    type: identifier
+
+  - term: brandOwner
+    label: Brand Owner
+    description: The company or organization that owns the brand of a Branded food item.
+    domain: FoodData Central
+    type: entity
+
+  - term: brandedFoodCategory
+    label: Branded Food Category
+    description: Category classification for branded food products (e.g., "Popcorn, Peanuts, Seeds & Related Snacks").
+    domain: FoodData Central
+    type: classification
+
+  - term: servingSize
+    label: Serving Size
+    description: The reference amount of food used to express nutrient information on a food label, measured in servingSizeUnit.
+    domain: FoodData Central
+    type: measurement
+
+  - term: servingSizeUnit
+    label: Serving Size Unit
+    description: Unit of measurement for the serving size (e.g., g for grams, ml for milliliters).
+    domain: FoodData Central
+    type: unit
+
+  - term: ingredients
+    label: Ingredients
+    description: Full ingredient statement for a branded food item as it appears on the product label.
+    domain: FoodData Central
+    type: text
+
+  - term: nutrient
+    label: Nutrient
+    description: A specific nutritional component (protein, fat, carbohydrate, vitamin, mineral, etc.) present in a food.
+    domain: FoodData Central
+    type: concept
+
+  - term: nutrientNumber
+    label: Nutrient Number
+    description: Numeric code identifying a specific nutrient within the FoodData Central system (e.g., 203 for Protein, 204 for Fat).
+    domain: FoodData Central
+    type: identifier
+
+  - term: unitName
+    label: Unit Name
+    description: The unit of measure for a nutrient amount (e.g., G for grams, MG for milligrams, KCAL for kilocalories).
+    domain: FoodData Central
+    type: unit
+
+  - term: foodNutrientDerivation
+    label: Food Nutrient Derivation
+    description: Method used to derive or calculate the nutrient value for a food (e.g., Analytical, Calculated from serving size).
+    domain: FoodData Central
+    type: provenance
+
+  - term: publicationDate
+    label: Publication Date
+    description: Date when the food item record was published or last updated in the FoodData Central database.
+    domain: FoodData Central
+    type: date
+
+  - term: scientificName
+    label: Scientific Name
+    description: Binomial Latin nomenclature for the food item's primary organism (e.g., Fragaria X ananassa for strawberry).
+    domain: FoodData Central
+    type: taxonomy
+
+  - term: isHistoricalReference
+    label: Is Historical Reference
+    description: Boolean flag indicating whether the food item is retained for historical reference purposes only.
+    domain: FoodData Central
+    type: flag
+
+  - term: labelNutrients
+    label: Label Nutrients
+    description: Nutrient values as they appear on the Nutrition Facts label of a branded food, including calories, fat, protein, carbohydrates, and key minerals.
+    domain: FoodData Central
+    type: group
+
+  # ---- Agricultural Statistics (NASS Quick Stats) ----
+  - term: commodity_desc
+    label: Commodity Description
+    description: The agricultural commodity being measured (e.g., CORN, WHEAT, CATTLE).
+    domain: NASS Quick Stats
+    type: classification
+
+  - term: statisticcat_desc
+    label: Statistic Category Description
+    description: The category of statistic (e.g., AREA HARVESTED, PRODUCTION, PRICE RECEIVED).
+    domain: NASS Quick Stats
+    type: classification
+
+  - term: agg_level_desc
+    label: Aggregation Level Description
+    description: The geographic aggregation level for the data record (e.g., NATIONAL, STATE, COUNTY, WATERSHED).
+    domain: NASS Quick Stats
+    type: geography
+    values:
+      - NATIONAL
+      - STATE
+      - COUNTY
+      - REGION : MULTI-STATE
+      - REGION : SUB-STATE
+      - WATERSHED
+      - ZIP CODE
+
+  - term: state_alpha
+    label: State Alpha
+    description: Two-letter USPS state abbreviation for the geographic location of the data.
+    domain: NASS Quick Stats
+    type: geography
+
+  - term: freq_desc
+    label: Frequency Description
+    description: Time frequency of the data collection (e.g., ANNUAL, MONTHLY, WEEKLY).
+    domain: NASS Quick Stats
+    type: temporal
+    values:
+      - ANNUAL
+      - MONTHLY
+      - WEEKLY
+      - POINT IN TIME (SNAPSHOT)
+      - DECENNIAL
+
+  - term: reference_period_desc
+    label: Reference Period Description
+    description: The specific time period to which the data applies (e.g., "YEAR", "JAN", "MARKETING YEAR").
+    domain: NASS Quick Stats
+    type: temporal
+
+  # ---- Farm Economics (ERS ARMS) ----
+  - term: farmtype
+    label: Farm Type
+    description: Classification of farm operations by economic size or production specialty used in the ARMS survey.
+    domain: ERS ARMS
+    type: classification
+
+  - term: report
+    label: Report
+    description: A predefined ARMS data report grouping related variables and survey results by topic area.
+    domain: ERS ARMS
+    type: grouping
+
+  - term: variable
+    label: Variable
+    description: A specific data element measured in the ARMS survey (e.g., gross farm income, debt-to-asset ratio).
+    domain: ERS ARMS
+    type: measure
+
+  - term: category
+    label: Category
+    description: A grouping classification used to organize ARMS survey variables into related subject areas.
+    domain: ERS ARMS
+    type: classification
+
+  # ---- Market News (AMS MARS) ----
+  - term: slug_id
+    label: Slug ID
+    description: A URL-friendly unique identifier for a published MARS market news report.
+    domain: AMS Market News
+    type: identifier
+
+  - term: report_title
+    label: Report Title
+    description: The official title of a USDA AMS market news report.
+    domain: AMS Market News
+    type: text
+
+  - term: published_date
+    label: Published Date
+    description: The date a market news report was officially published and made available.
+    domain: AMS Market News
+    type: date
+
+  - term: corrected_date
+    label: Corrected Date
+    description: The date a previously published market news report was corrected.
+    domain: AMS Market News
+    type: date
+
+  # ---- Geospatial (CroplandCROS / Forest Service) ----
+  - term: cropland_data_layer
+    label: Cropland Data Layer
+    description: An annual raster geospatial data product produced by NASS providing crop-specific land cover data at 30-meter resolution for the continental United States.
+    domain: NASS CroplandCROS
+    type: dataset
+    abbreviation: CDL
+
+  - term: fips_code
+    label: FIPS Code
+    description: Federal Information Processing Standards code uniquely identifying US states and counties.
+    domain: Geospatial
+    type: identifier
+
+  - term: bounding_box
+    label: Bounding Box
+    description: Rectangular geographic extent defined by minimum and maximum latitude/longitude coordinates used to spatially filter API requests.
+    domain: Geospatial
+    type: spatial
+
+  # ---- Food Safety (FSIS MPI) ----
+  - term: establishment_number
+    label: Establishment Number
+    description: Unique identifier assigned by FSIS to each meat, poultry, or egg product establishment under federal inspection.
+    domain: FSIS MPI
+    type: identifier
+
+  - term: inspection_type
+    label: Inspection Type
+    description: The type of FSIS inspection program applicable to a facility (e.g., Grant of Inspection, Talmadge-Aiken, Custom Exempt).
+    domain: FSIS MPI
+    type: classification
+
+  - term: activities
+    label: Activities
+    description: Slaughter or processing activities conducted at an FSIS-regulated establishment (e.g., Beef Slaughter, Poultry Processing).
+    domain: FSIS MPI
+    type: classification
+
+  - term: size
+    label: Size
+    description: The size classification of an FSIS-regulated establishment based on number of employees (Small, Very Small, Large).
+    domain: FSIS MPI
+    type: classification
+    values:
+      - Large
+      - Small
+      - Very Small

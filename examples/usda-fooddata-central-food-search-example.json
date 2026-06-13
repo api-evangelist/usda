@@ -1,0 +1,115 @@
+{
+  "description": "Example response from the FoodData Central /v1/foods/search endpoint",
+  "endpoint": "GET https://api.nal.usda.gov/fdc/v1/foods/search?query=cheddar+cheese&pageSize=3&api_key=DEMO_KEY",
+  "response": {
+    "totalHits": 1397,
+    "currentPage": 1,
+    "totalPages": 47,
+    "pageList": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "foodSearchCriteria": {
+      "query": "cheddar cheese",
+      "generalSearchInput": "cheddar cheese",
+      "pageNumber": 1,
+      "numberOfResultsPerPage": 3,
+      "pageSize": 3,
+      "requireAllWords": false
+    },
+    "foods": [
+      {
+        "fdcId": 328637,
+        "description": "Cheese, cheddar",
+        "dataType": "SR Legacy",
+        "gtinUpc": null,
+        "publishedDate": "2019-04-01",
+        "brandOwner": null,
+        "ingredients": null,
+        "ndbNumber": "1009",
+        "score": 247.24,
+        "foodNutrients": [
+          {
+            "nutrientId": 1003,
+            "nutrientName": "Protein",
+            "nutrientNumber": "203",
+            "unitName": "G",
+            "derivationCode": "LCCD",
+            "derivationDescription": "Calculated from a daily value percentage per serving size measure",
+            "derivationId": 70,
+            "value": 24.9,
+            "foodNutrientSourceId": 9,
+            "foodNutrientSourceCode": "12",
+            "foodNutrientSourceDescription": "Manufacturer's analytical; partial documentation",
+            "rank": 600,
+            "indentLevel": 1,
+            "foodNutrientId": 167514
+          },
+          {
+            "nutrientId": 1004,
+            "nutrientName": "Total lipid (fat)",
+            "nutrientNumber": "204",
+            "unitName": "G",
+            "value": 33.1,
+            "rank": 800,
+            "indentLevel": 1,
+            "foodNutrientId": 167515
+          },
+          {
+            "nutrientId": 1005,
+            "nutrientName": "Carbohydrate, by difference",
+            "nutrientNumber": "205",
+            "unitName": "G",
+            "value": 1.28,
+            "rank": 1110,
+            "indentLevel": 1,
+            "foodNutrientId": 167516
+          },
+          {
+            "nutrientId": 1008,
+            "nutrientName": "Energy",
+            "nutrientNumber": "208",
+            "unitName": "KCAL",
+            "value": 403,
+            "rank": 300,
+            "indentLevel": 1,
+            "foodNutrientId": 167517
+          }
+        ]
+      },
+      {
+        "fdcId": 1097512,
+        "description": "Cheddar Cheese",
+        "dataType": "Branded",
+        "gtinUpc": "021000013197",
+        "publishedDate": "2020-01-13",
+        "brandOwner": "Kraft",
+        "ingredients": "PASTEURIZED MILK, CHEESE CULTURE, SALT, ENZYMES, ANNATTO (COLOR).",
+        "score": 240.11,
+        "foodNutrients": [
+          {
+            "nutrientId": 1003,
+            "nutrientName": "Protein",
+            "nutrientNumber": "203",
+            "unitName": "G",
+            "value": 25.0,
+            "rank": 600
+          },
+          {
+            "nutrientId": 1004,
+            "nutrientName": "Total lipid (fat)",
+            "nutrientNumber": "204",
+            "unitName": "G",
+            "value": 32.1,
+            "rank": 800
+          },
+          {
+            "nutrientId": 1008,
+            "nutrientName": "Energy",
+            "nutrientNumber": "208",
+            "unitName": "KCAL",
+            "value": 393,
+            "rank": 300
+          }
+        ]
+      }
+    ]
+  }
+}

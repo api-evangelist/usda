@@ -1,0 +1,233 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/usda/main/json-schema/usda-fooddata-central-food-item.json",
+  "title": "FoodData Central Food Item",
+  "description": "A food item from the USDA FoodData Central database, which may be one of several data types: Branded, Foundation, SR Legacy, or Survey (FNDDS).",
+  "oneOf": [
+    { "$ref": "#/definitions/AbridgedFoodItem" },
+    { "$ref": "#/definitions/BrandedFoodItem" },
+    { "$ref": "#/definitions/FoundationFoodItem" },
+    { "$ref": "#/definitions/SRLegacyFoodItem" },
+    { "$ref": "#/definitions/SurveyFoodItem" }
+  ],
+  "definitions": {
+    "AbridgedFoodItem": {
+      "type": "object",
+      "title": "Abridged Food Item",
+      "description": "A condensed representation of a food item with core nutrient data.",
+      "required": ["fdcId", "dataType", "description"],
+      "properties": {
+        "dataType": {
+          "type": "string",
+          "example": "Branded"
+        },
+        "description": {
+          "type": "string",
+          "example": "NUT 'N BERRY MIX"
+        },
+        "fdcId": {
+          "type": "integer",
+          "example": 534358
+        },
+        "foodNutrients": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/AbridgedFoodNutrient" }
+        },
+        "publicationDate": {
+          "type": "string",
+          "example": "4/1/2019"
+        },
+        "brandOwner": {
+          "type": "string",
+          "description": "Only applies to Branded Foods",
+          "example": "Kar Nut Products Company"
+        },
+        "gtinUpc": {
+          "type": "string",
+          "description": "Only applies to Branded Foods",
+          "example": "077034085228"
+        },
+        "ndbNumber": {
+          "type": "string",
+          "description": "Only applies to Foundation and SR Legacy Foods",
+          "example": "7954"
+        },
+        "foodCode": {
+          "type": "string",
+          "description": "Only applies to Survey Foods",
+          "example": "27415110"
+        }
+      }
+    },
+    "BrandedFoodItem": {
+      "type": "object",
+      "title": "Branded Food Item",
+      "description": "A food item from branded food sources with full label nutrient data.",
+      "required": ["fdcId", "dataType", "description"],
+      "properties": {
+        "fdcId": { "type": "integer", "example": 534358 },
+        "availableDate": { "type": "string", "example": "8/18/2018" },
+        "brandOwner": { "type": "string", "example": "Kar Nut Products Company" },
+        "dataSource": { "type": "string", "example": "LI" },
+        "dataType": { "type": "string", "example": "Branded" },
+        "description": { "type": "string", "example": "NUT 'N BERRY MIX" },
+        "foodClass": { "type": "string", "example": "Branded" },
+        "gtinUpc": { "type": "string", "example": "077034085228" },
+        "householdServingFullText": { "type": "string", "example": "1 ONZ" },
+        "ingredients": { "type": "string" },
+        "modifiedDate": { "type": "string", "example": "8/18/2018" },
+        "publicationDate": { "type": "string", "example": "4/1/2019" },
+        "servingSize": { "type": "number", "example": 28 },
+        "servingSizeUnit": { "type": "string", "example": "g" },
+        "brandedFoodCategory": { "type": "string", "example": "Popcorn, Peanuts, Seeds & Related Snacks" },
+        "foodNutrients": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/FoodNutrient" }
+        }
+      }
+    },
+    "FoundationFoodItem": {
+      "type": "object",
+      "title": "Foundation Food Item",
+      "description": "A food item from the Foundation Foods dataset with detailed analytical data.",
+      "required": ["fdcId", "dataType", "description"],
+      "properties": {
+        "fdcId": { "type": "integer", "example": 747448 },
+        "dataType": { "type": "string", "example": "Foundation" },
+        "description": { "type": "string", "example": "Strawberries, raw" },
+        "foodClass": { "type": "string", "example": "FinalFood" },
+        "isHistoricalReference": { "type": "boolean", "example": false },
+        "ndbNumber": { "type": "string", "example": "9316" },
+        "publicationDate": { "type": "string", "example": "12/16/2019" },
+        "scientificName": { "type": "string", "example": "Fragaria X ananassa" },
+        "foodNutrients": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/FoodNutrient" }
+        }
+      }
+    },
+    "SRLegacyFoodItem": {
+      "type": "object",
+      "title": "SR Legacy Food Item",
+      "description": "A food item from the Standard Reference Legacy dataset.",
+      "required": ["fdcId", "dataType", "description"],
+      "properties": {
+        "fdcId": { "type": "integer", "example": 170379 },
+        "dataType": { "type": "string", "example": "SR Legacy" },
+        "description": { "type": "string", "example": "Broccoli, raw" },
+        "foodClass": { "type": "string", "example": "FinalFood" },
+        "isHistoricalReference": { "type": "boolean", "example": true },
+        "ndbNumber": { "type": "string", "example": "11090" },
+        "publicationDate": { "type": "string", "example": "4/1/2019" },
+        "scientificName": { "type": "string", "example": "Brassica oleracea var. italica" },
+        "foodNutrients": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/FoodNutrient" }
+        }
+      }
+    },
+    "SurveyFoodItem": {
+      "type": "object",
+      "title": "Survey Food Item",
+      "description": "A food item from the Food and Nutrient Database for Dietary Studies (FNDDS).",
+      "required": ["fdcId", "dataType", "description"],
+      "properties": {
+        "fdcId": { "type": "integer", "example": 337985 },
+        "dataType": { "type": "string", "example": "Survey (FNDDS)" },
+        "description": { "type": "string", "example": "Beef, ground, 93% lean meat / 7% fat" },
+        "foodClass": { "type": "string" },
+        "foodCode": { "type": "string", "example": "21000000" },
+        "publicationDate": { "type": "string", "example": "4/1/2019" },
+        "foodNutrients": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/FoodNutrient" }
+        }
+      }
+    },
+    "AbridgedFoodNutrient": {
+      "type": "object",
+      "title": "Abridged Food Nutrient",
+      "properties": {
+        "number": { "type": "integer", "example": 203 },
+        "name": { "type": "string", "example": "Protein" },
+        "amount": { "type": "number", "example": 7.998 },
+        "unitName": { "type": "string", "example": "G" },
+        "derivationCode": { "type": "string" },
+        "derivationDescription": { "type": "string" }
+      }
+    },
+    "FoodNutrient": {
+      "type": "object",
+      "title": "Food Nutrient",
+      "properties": {
+        "id": { "type": "integer", "example": 167514 },
+        "amount": { "type": "number", "example": 11.8 },
+        "dataPoints": { "type": "integer", "example": 49 },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "median": { "type": "number" },
+        "type": { "type": "string", "example": "FoodNutrient" },
+        "nutrient": { "$ref": "#/definitions/Nutrient" },
+        "foodNutrientDerivation": { "$ref": "#/definitions/FoodNutrientDerivation" }
+      }
+    },
+    "Nutrient": {
+      "type": "object",
+      "title": "Nutrient",
+      "properties": {
+        "id": { "type": "integer", "example": 1003 },
+        "number": { "type": "string", "example": "203" },
+        "name": { "type": "string", "example": "Protein" },
+        "rank": { "type": "integer", "example": 600 },
+        "unitName": { "type": "string", "example": "g" }
+      }
+    },
+    "FoodNutrientDerivation": {
+      "type": "object",
+      "title": "Food Nutrient Derivation",
+      "properties": {
+        "id": { "type": "integer" },
+        "code": { "type": "string", "example": "A" },
+        "description": { "type": "string", "example": "Analytical" },
+        "foodNutrientSource": { "$ref": "#/definitions/FoodNutrientSource" }
+      }
+    },
+    "FoodNutrientSource": {
+      "type": "object",
+      "title": "Food Nutrient Source",
+      "properties": {
+        "id": { "type": "integer" },
+        "code": { "type": "string", "example": "1" },
+        "description": { "type": "string", "example": "Analytical or derived from analytical" }
+      }
+    },
+    "SearchResult": {
+      "type": "object",
+      "title": "Search Result",
+      "properties": {
+        "totalHits": { "type": "integer", "example": 1 },
+        "currentPage": { "type": "integer", "example": 1 },
+        "totalPages": { "type": "integer", "example": 1 },
+        "foods": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/SearchResultItem" }
+        }
+      }
+    },
+    "SearchResultItem": {
+      "type": "object",
+      "title": "Search Result Item",
+      "properties": {
+        "fdcId": { "type": "integer", "example": 534358 },
+        "description": { "type": "string", "example": "NUT 'N BERRY MIX" },
+        "dataType": { "type": "string", "example": "Branded" },
+        "gtinUpc": { "type": "string", "example": "077034085228" },
+        "publishedDate": { "type": "string", "example": "2019-04-01" },
+        "brandOwner": { "type": "string", "example": "Kar Nut Products Company" },
+        "ingredients": { "type": "string" },
+        "allHighlightFields": { "type": "string" },
+        "score": { "type": "number", "example": 247.24 }
+      }
+    }
+  }
+}
