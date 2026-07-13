@@ -2,11 +2,13 @@
   "repo": "usda",
   "feeds": [
     {
-      "source": "https://www.usda.gov/media/blog",
+      "source": "https://github.com/USDA-REE-ERS",
+      "feed_url": "https://github.com/USDA-REE-ERS",
+      "title": "",
       "saved": 0,
-      "error": "Timeout (60s) on every attempt"
+      "method": "none"
     }
   ],
-  "fetched": "2026-06-27T13:18:42Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 0
 }
