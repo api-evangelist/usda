@@ -119,6 +119,8 @@ apis:
       - type: Documentation
         url: https://www.fsis.usda.gov/science-data/developer-resources
 common:
+  - type: AgenticAccess
+    url: agentic-access/usda-agentic-access.yml
   - type: DomainSecurity
     url: security/usda-domain-security.yml
   - type: Authentication
