@@ -1,0 +1,14 @@
+{
+  "provider": "usda",
+  "sources": [
+    "usda-fdc-api-openapi.yml"
+  ],
+  "outputs": [
+    "usda-fdc-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
