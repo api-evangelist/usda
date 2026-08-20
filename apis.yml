@@ -27,6 +27,14 @@ tags:
   - Statistics
   - Geospatial
   - Market News
+  - Federal-Government
+tags_raw:
+  - Agriculture
+  - Food Safety
+  - Nutrition
+  - Statistics
+  - Geospatial
+  - Market News
   - Federal Government
 apis:
 - name: USDA NASS Quick Stats API
