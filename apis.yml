@@ -1,6 +1,19 @@
 aid: usda
 name: USDA
 description: The US Department of Agriculture provides a suite of free public REST APIs covering agricultural statistics, food and nutrition data, market news, food safety inspection records, crop and vegetation monitoring, and geospatial services. APIs are accessed through api.data.gov and agency-specific portals, all requiring a free API key.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
@@ -153,6 +166,8 @@ apis:
   - type: APIKeySignup
     url: https://fdc.nal.usda.gov/api-key-signup/
 common:
+  - type: IssueTracker
+    url: https://github.com/USDA-REE-ERS/ARMS-Data-API/issues
   - type: AgenticAccess
     url: agentic-access/usda-agentic-access.yml
   - type: DomainSecurity
