@@ -2,17 +2,20 @@ aid: usda
 name: USDA
 description: The US Department of Agriculture provides a suite of free public REST APIs covering agricultural statistics, food and nutrition data, market news, food safety inspection records, crop and vegetation monitoring, and geospatial services. APIs are accessed through api.data.gov and agency-specific portals, all requiring a free API key.
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - usda-ree-ers/arms-data-api
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: free
@@ -41,7 +44,7 @@ tags:
   - Statistics
   - Geospatial
   - Market News
-  - Federal-Government
+  - Federal Government
 tags_raw:
   - Agriculture
   - Food Safety
@@ -50,6 +53,7 @@ tags_raw:
   - Geospatial
   - Market News
   - Federal Government
+  - Federal-Government
 apis:
 - name: USDA NASS Quick Stats API
   description: >-
