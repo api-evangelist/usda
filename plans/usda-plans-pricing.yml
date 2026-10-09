@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-06-13 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-06-13'
 name: USDA API Plans and Pricing
 description: All USDA public APIs are provided as a free government service with no commercial pricing tiers. Access is governed by agency-specific terms of service and api.data.gov usage policies.
 url: https://api.data.gov/docs/developer-manual/
@@ -72,3 +77,27 @@ notes:
   - FoodData Central data is public domain under CC0 1.0 Universal licensing.
   - NASS data and reports are produced by the federal government and available for public use.
   - api.data.gov is the shared interagency API management platform used by most USDA APIs.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Free (No Key)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Free Registered
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Higher Rate Limits (On Request)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
