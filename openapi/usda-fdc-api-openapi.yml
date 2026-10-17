@@ -383,17 +383,77 @@ paths:
           description: YAML rendering of OpenAPI 3.0 specification
 components:
   schemas:
-    InputFoodFoundation:
-      description: applies to Foundation foods. Not all inputFoods will have all fields.
+    FoodComponent:
       properties:
         id:
           type: integer
+          format: int32
+          example: 59929
+        name:
+          type: string
+          example: External fat
+        dataPoints:
+          type: integer
+          example: 24
+        gramWeight:
+          type: number
+          example: 2.1
+        isRefuse:
+          type: boolean
+          example: true
+        minYearAcquired:
+          type: integer
+          example: 2011
+        percentWeight:
+          type: number
+          example: 0.5
+    SampleFoodItem:
+      required:
+      - fdcId
+      - dataType
+      - description
+      properties:
+        fdcId:
+          type: integer
           example: 45551
-        foodDescription:
+        datatype:
+          type: string
+          example: Sample
+        description:
           type: string
           example: Beef, Tenderloin Roast, select, roasted, comp5, lean (34BLTR)
-        inputFood:
-          $ref: '#/components/schemas/SampleFoodItem'
+        foodClass:
+          type: string
+          example: Composite
+        publicationDate:
+          type: string
+          example: 4/1/2019
+        foodAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodCategory'
+    FoodNutrientDerivation:
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 75
+        code:
+          type: string
+          example: LCCD
+        description:
+          type: string
+          example: Calculated from a daily value percentage per serving size measure
+        foodNutrientSource:
+          $ref: '#/components/schemas/FoodNutrientSource'
+    WweiaFoodCategory:
+      properties:
+        wweiaFoodCategoryCode:
+          type: integer
+          example: 3002
+        wweiaFoodCategoryDescription:
+          type: string
+          example: Meat mixed dishes
     FoodsCriteria:
       type: object
       description: JSON for request body of 'foods' POST request. Retrieves a list of food items by a list of up to 20 FDC IDs. Optional format and nutrients can be specified. Invalid FDC ID's or ones that are not found are omitted and an empty set is returned if there are no matches.
@@ -426,366 +486,6 @@ components:
           - 203
           - 204
           - 205
-    FoodNutrientDerivation:
-      properties:
-        id:
-          type: integer
-          format: int32
-          example: 75
-        code:
-          type: string
-          example: LCCD
-        description:
-          type: string
-          example: Calculated from a daily value percentage per serving size measure
-        foodNutrientSource:
-          $ref: '#/components/schemas/FoodNutrientSource'
-    FoodNutrient:
-      required:
-      - id
-      - nutrientNumber
-      - unit
-      properties:
-        id:
-          type: integer
-          format: uint
-          example: 167514
-        amount:
-          type: number
-          format: float
-          example: 0E-8
-        dataPoints:
-          type: integer
-          format: int32
-          example: 49
-        min:
-          type: number
-          format: float
-          example: 73.73
-        max:
-          type: number
-          format: float
-          example: 91.8
-        median:
-          type: number
-          format: float
-          example: 90.3
-        type:
-          type: string
-          example: FoodNutrient
-        nutrient:
-          $ref: '#/components/schemas/Nutrient'
-        foodNutrientDerivation:
-          $ref: '#/components/schemas/FoodNutrientDerivation'
-        nutrientAnalysisDetails:
-          $ref: '#/components/schemas/NutrientAnalysisDetails'
-    SurveyFoodItem:
-      required:
-      - fdcId
-      - dataType
-      - description
-      properties:
-        fdcId:
-          type: integer
-          example: 337985
-        datatype:
-          type: string
-          example: Survey (FNDDS)
-        description:
-          type: string
-          example: Beef curry
-        endDate:
-          type: string
-          example: 12/31/2014
-        foodClass:
-          type: string
-          example: Survey
-        foodCode:
-          type: string
-          example: '27116100'
-        publicationDate:
-          type: string
-          example: 4/1/2019
-        startDate:
-          type: string
-          example: 1/1/2013
-        foodAttributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/FoodAttribute'
-        foodPortions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FoodPortion'
-        inputFoods:
-          type: array
-          items:
-            $ref: '#/components/schemas/InputFoodSurvey'
-        wweiaFoodCategory:
-          $ref: '#/components/schemas/WweiaFoodCategory'
-    SearchResultFood:
-      type: object
-      required:
-      - fdcId
-      - description
-      properties:
-        fdcId:
-          description: Unique ID of the food.
-          type: integer
-          example: 45001529
-        dataType:
-          description: The type of the food data.
-          type: string
-          example: Branded
-        description:
-          description: The description of the food.
-          type: string
-          example: BROCCOLI
-        foodCode:
-          description: Any A unique ID identifying the food within FNDDS.
-          type: string
-        foodNutrients:
-          type: array
-          items:
-            $ref: '#/components/schemas/AbridgedFoodNutrient'
-        publicationDate:
-          description: Date the item was published to FDC.
-          type: string
-          example: 4/1/2019
-        scientificName:
-          description: The scientific name of the food.
-          type: string
-        brandOwner:
-          description: Brand owner for the food. Only applies to Branded Foods.
-          type: string
-          example: Supervalu, Inc.
-        gtinUpc:
-          description: GTIN or UPC code identifying the food. Only applies to Branded Foods.
-          type: string
-          example: 041303020937
-        ingredients:
-          description: The list of ingredients (as it appears on the product label). Only applies to Branded Foods.
-          type: string
-        ndbNumber:
-          description: Unique number assigned for foundation foods. Only applies to Foundation and SRLegacy Foods.
-          type: string
-        additionalDescriptions:
-          description: Any additional descriptions of the food.
-          type: string
-          example: Coon; sharp cheese; Tillamook; Hoop; Pioneer; New York; Wisconsin; Longhorn
-        allHighlightFields:
-          description: allHighlightFields
-          type: string
-        score:
-          description: Relative score indicating how well the food matches the search criteria.
-          type: number
-          format: float
-    FoodPortion:
-      properties:
-        id:
-          type: integer
-          format: int32
-          example: 135806
-        amount:
-          type: number
-          format: float
-          example: 1
-        dataPoints:
-          type: integer
-          format: int32
-          example: 9
-        gramWeight:
-          type: number
-          format: float
-          example: 91
-        minYearAcquired:
-          type: integer
-          example: 2011
-        modifier:
-          type: string
-          example: '10205'
-        portionDescription:
-          type: string
-          example: 1 cup
-        sequenceNumber:
-          type: integer
-          example: 1
-        measureUnit:
-          $ref: '#/components/schemas/MeasureUnit'
-    FoodComponent:
-      properties:
-        id:
-          type: integer
-          format: int32
-          example: 59929
-        name:
-          type: string
-          example: External fat
-        dataPoints:
-          type: integer
-          example: 24
-        gramWeight:
-          type: number
-          example: 2.1
-        isRefuse:
-          type: boolean
-          example: true
-        minYearAcquired:
-          type: integer
-          example: 2011
-        percentWeight:
-          type: number
-          example: 0.5
-    SRLegacyFoodItem:
-      required:
-      - fdcId
-      - dataType
-      - description
-      properties:
-        fdcId:
-          type: integer
-          example: 170379
-        dataType:
-          type: string
-          example: SR Legacy
-        description:
-          type: string
-          example: Broccoli, raw
-        foodClass:
-          type: string
-          example: FinalFood
-        isHistoricalReference:
-          type: boolean
-          example: true
-        ndbNumber:
-          type: string
-          example: '11090'
-        publicationDate:
-          type: string
-          example: 4/1/2019
-        scientificName:
-          type: string
-          example: Brassica oleracea var. italica
-        foodCategory:
-          $ref: '#/components/schemas/FoodCategory'
-        foodNutrients:
-          type: array
-          items:
-            $ref: '#/components/schemas/FoodNutrient'
-        nutrientConversionFactors:
-          type: array
-          items:
-            $ref: '#/components/schemas/NutrientConversionFactors'
-    FoundationFoodItem:
-      required:
-      - fdcId
-      - dataType
-      - description
-      properties:
-        fdcId:
-          type: integer
-          example: 747448
-        dataType:
-          type: string
-          example: Foundation
-        description:
-          type: string
-          example: Strawberries, raw
-        foodClass:
-          type: string
-          example: FinalFood
-        footNote:
-          type: string
-          example: Source number reflects the actual number of samples analyzed for a nutrient. Repeat nutrient analyses may have been done on the same sample with the values shown.
-        isHistoricalReference:
-          type: boolean
-          example: false
-        ndbNumber:
-          type: string
-          example: '9316'
-        publicationDate:
-          type: string
-          example: 12/16/2019
-        scientificName:
-          type: string
-          example: Fragaria X ananassa
-        foodCategory:
-          $ref: '#/components/schemas/FoodCategory'
-        foodComponents:
-          type: array
-          items:
-            $ref: '#/components/schemas/FoodComponent'
-        foodNutrients:
-          type: array
-          items:
-            $ref: '#/components/schemas/FoodNutrient'
-        foodPortions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FoodPortion'
-        inputFoods:
-          type: array
-          items:
-            $ref: '#/components/schemas/InputFoodFoundation'
-        nutrientConversionFactors:
-          type: array
-          items:
-            $ref: '#/components/schemas/NutrientConversionFactors'
-    FoodUpdateLog:
-      properties:
-        fdcId:
-          type: integer
-          example: 534358
-        availableDate:
-          type: string
-          example: 8/18/2018
-        brandOwner:
-          type: string
-          example: Kar Nut Products Company
-        dataSource:
-          type: string
-          example: LI
-        dataType:
-          type: string
-          example: Branded
-        description:
-          type: string
-          example: NUT 'N BERRY MIX
-        foodClass:
-          type: string
-          example: Branded
-        gtinUpc:
-          type: string
-          example: 077034085228
-        householdServingFullText:
-          type: string
-          example: 1 ONZ
-        ingredients:
-          type: string
-          example: PEANUTS (PEANUTS, PEANUT AND/OR SUNFLOWER OIL). RAISINS. DRIED CRANBERRIES (CRANBERRIES, SUGAR, SUNFLOWER OIL). SUNFLOWER KERNELS AND ALMONDS (SUNFLOWER KERNELS AND ALMONDS, PEANUT AND/OR SUNFLOWER OIL).
-        modifiedDate:
-          type: string
-          example: 8/18/2018
-        publicationDate:
-          type: string
-          example: 4/1/2019
-        servingSize:
-          type: integer
-          format: float32
-          example: 28
-        servingSizeUnit:
-          type: string
-          example: g
-        brandedFoodCategory:
-          type: string
-          example: Popcorn, Peanuts, Seeds & Related Snacks
-        changes:
-          type: string
-          example: Nutrient Added, Nutrient Updated
-        foodAttributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/FoodAttribute'
     FoodAttribute:
       properties:
         id:
@@ -809,39 +509,48 @@ components:
             description:
               type: string
               example: Adjustments made to foods, including moisture and fat changes.
-    NutrientConversionFactors:
+    InputFoodSurvey:
+      description: applies to Survey (FNDDS). Not all inputFoods will have all fields.
       properties:
-        type:
-          type: string
-          example: .ProteinConversionFactor
-        value:
+        id:
+          type: integer
+          example: 18146
+        amount:
           type: number
           format: float
-          example: 6.25
-    MeasureUnit:
-      properties:
-        id:
+          example: 1.5
+        foodDescription:
+          type: string
+          example: Spices, curry powder
+        ingredientCode:
           type: integer
-          format: int32
-          example: 999
-        abbreviation:
+          example: 2015
+        ingredientDescription:
           type: string
-          example: undetermined
-        name:
+          example: Spices, curry powder
+        ingredientWeight:
+          type: number
+          format: float
+          example: 9.45
+        portionCode:
           type: string
-          example: undetermined
-    FoodNutrientSource:
-      properties:
-        id:
+          example: '21000'
+        portionDescription:
+          type: string
+          example: 1 tablespoon
+        sequenceNumber:
           type: integer
-          format: int32
-          example: 9
-        code:
+          example: 6
+        surveyFlag:
+          type: integer
+          example: 0
+        unit:
           type: string
-          example: '12'
-        description:
-          type: string
-          example: Manufacturer's analytical; partial documentation
+          example: TB
+        inputFood:
+          $ref: '#/components/schemas/SurveyFoodItem'
+        retentionFactor:
+          $ref: '#/components/schemas/RetentionFactor'
     BrandedFoodItem:
       type: object
       required:
@@ -997,277 +706,61 @@ components:
                   type: number
                   format: float
                   example: 140
-    RetentionFactor:
-      properties:
-        id:
-          type: integer
-          example: 235
-        code:
-          type: integer
-          example: 3460
-        description:
-          type: string
-          example: VEG, ROOTS, ETC, SAUTEED
-    FoodListCriteria:
-      type: object
-      description: JSON for request body of 'list' POST request
-      properties:
-        dataType:
-          description: Optional. Filter on a specific data type; specify one or more values in an array.
-          type: array
-          items:
-            type: string
-            enum:
-            - Branded
-            - Foundation
-            - Survey (FNDDS)
-            - SR Legacy
-          minItems: 1
-          maxItems: 4
-          example:
-          - Foundation
-          - SR Legacy
-        pageSize:
-          description: Optional. Maximum number of results to return for the current page. Default is 50.
-          type: integer
-          minimum: 1
-          maximum: 200
-          example: 25
-        pageNumber:
-          description: Optional. Page number to retrieve. The offset into the overall result set is expressed as (pageNumber * pageSize)
-          type: integer
-          example: 2
-        sortBy:
-          description: Optional. Specify one of the possible values to sort by that field. Note, dataType.keyword will be dataType and lowercaseDescription.keyword will be description in future releases.
-          type: string
-          enum:
-          - dataType.keyword
-          - lowercaseDescription.keyword
-          - fdcId
-          - publishedDate
-        sortOrder:
-          description: Optional. The sort direction for the results. Only applicable if sortBy is specified.
-          type: string
-          enum:
-          - asc
-          - desc
-    SampleFoodItem:
-      required:
-      - fdcId
-      - dataType
-      - description
+    FoodUpdateLog:
       properties:
         fdcId:
           type: integer
-          example: 45551
-        datatype:
+          example: 534358
+        availableDate:
           type: string
-          example: Sample
-        description:
+          example: 8/18/2018
+        brandOwner:
           type: string
-          example: Beef, Tenderloin Roast, select, roasted, comp5, lean (34BLTR)
-        foodClass:
+          example: Kar Nut Products Company
+        dataSource:
           type: string
-          example: Composite
-        publicationDate:
-          type: string
-          example: 4/1/2019
-        foodAttributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/FoodCategory'
-    AbridgedFoodNutrient:
-      required:
-      - id
-      - nutrientNumber
-      - unit
-      properties:
-        number:
-          type: integer
-          format: uint
-          example: 303
-        name:
-          type: string
-          example: Iron, Fe
-        amount:
-          type: number
-          format: float
-          example: 0.53
-        unitName:
-          type: string
-          example: mg
-        derivationCode:
-          type: string
-          example: LCCD
-        derivationDescription:
-          type: string
-          example: Calculated from a daily value percentage per serving size measure
-    SearchResult:
-      properties:
-        foodSearchCriteria:
-          description: A copy of the criteria that were used in the search.
-          type: object
-          items:
-            $ref: '#/components/schemas/FoodSearchCriteria'
-        totalHits:
-          description: The total number of foods found matching the search criteria.
-          type: integer
-          example: 1034
-        currentPage:
-          description: The current page of results being returned.
-          type: integer
-        totalPages:
-          description: The total number of pages found matching the search criteria.
-          type: integer
-        foods:
-          description: The list of foods found matching the search criteria. See Food Fields below.
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchResultFood'
-    InputFoodSurvey:
-      description: applies to Survey (FNDDS). Not all inputFoods will have all fields.
-      properties:
-        id:
-          type: integer
-          example: 18146
-        amount:
-          type: number
-          format: float
-          example: 1.5
-        foodDescription:
-          type: string
-          example: Spices, curry powder
-        ingredientCode:
-          type: integer
-          example: 2015
-        ingredientDescription:
-          type: string
-          example: Spices, curry powder
-        ingredientWeight:
-          type: number
-          format: float
-          example: 9.45
-        portionCode:
-          type: string
-          example: '21000'
-        portionDescription:
-          type: string
-          example: 1 tablespoon
-        sequenceNumber:
-          type: integer
-          example: 6
-        surveyFlag:
-          type: integer
-          example: 0
-        unit:
-          type: string
-          example: TB
-        inputFood:
-          $ref: '#/components/schemas/SurveyFoodItem'
-        retentionFactor:
-          $ref: '#/components/schemas/RetentionFactor'
-    NutrientAnalysisDetails:
-      properties:
-        subSampleId:
-          type: integer
-          example: 343866
-        amount:
-          type: number
-          format: float
-          example: 0E-8
-        nutrientId:
-          type: integer
-          example: 1005
-        labMethodDescription:
-          type: string
-          example: 10.2135/cropsci2017.04.0244
-        labMethodOriginalDescription:
-          type: string
-        labMethodLink:
-          type: string
-          format: url
-          example: https://doi.org/10.2135/cropsci2017.04.0244
-        labMethodTechnique:
-          type: string
-          example: DOI for Beans
-        nutrientAcquisitionDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/NutrientAcquisitionDetails'
-    WweiaFoodCategory:
-      properties:
-        wweiaFoodCategoryCode:
-          type: integer
-          example: 3002
-        wweiaFoodCategoryDescription:
-          type: string
-          example: Meat mixed dishes
-    FoodCategory:
-      properties:
-        id:
-          type: integer
-          format: int32
-          example: 11
-        code:
-          type: string
-          example: '1100'
-        description:
-          type: string
-          example: Vegetables and Vegetable Products
-    NutrientAcquisitionDetails:
-      type: object
-      properties:
-        sampleUnitId:
-          type: integer
-          example: 321632
-        purchaseDate:
-          type: string
-          example: 12/2/2005
-        storeCity:
-          type: string
-          example: TRUSSVILLE
-        storeState:
-          type: string
-          example: AL
-    AbridgedFoodItem:
-      type: object
-      required:
-      - fdcId
-      - dataType
-      - description
-      properties:
+          example: LI
         dataType:
           type: string
           example: Branded
         description:
           type: string
           example: NUT 'N BERRY MIX
-        fdcId:
-          type: integer
-          example: 534358
-        foodNutrients:
-          type: array
-          items:
-            $ref: '#/components/schemas/AbridgedFoodNutrient'
+        foodClass:
+          type: string
+          example: Branded
+        gtinUpc:
+          type: string
+          example: 077034085228
+        householdServingFullText:
+          type: string
+          example: 1 ONZ
+        ingredients:
+          type: string
+          example: PEANUTS (PEANUTS, PEANUT AND/OR SUNFLOWER OIL). RAISINS. DRIED CRANBERRIES (CRANBERRIES, SUGAR, SUNFLOWER OIL). SUNFLOWER KERNELS AND ALMONDS (SUNFLOWER KERNELS AND ALMONDS, PEANUT AND/OR SUNFLOWER OIL).
+        modifiedDate:
+          type: string
+          example: 8/18/2018
         publicationDate:
           type: string
           example: 4/1/2019
-        brandOwner:
+        servingSize:
+          type: integer
+          format: float32
+          example: 28
+        servingSizeUnit:
           type: string
-          description: only applies to Branded Foods
-          example: Kar Nut Products Company
-        gtinUpc:
+          example: g
+        brandedFoodCategory:
           type: string
-          description: only applies to Branded Foods
-          example: 077034085228
-        ndbNumber:
+          example: Popcorn, Peanuts, Seeds & Related Snacks
+        changes:
           type: string
-          description: only applies to Foundation and SRLegacy Foods
-          example: '7954'
-        foodCode:
-          type: string
-          description: only applies to Survey Foods
-          example: '27415110'
+          example: Nutrient Added, Nutrient Updated
+        foodAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodAttribute'
     FoodSearchCriteria:
       type: object
       description: JSON for request body of 'search' POST request
@@ -1319,6 +812,160 @@ components:
           description: Optional. Filter results based on the brand owner of the food. Only applies to Branded Foods.
           type: string
           example: Kar Nut Products Company
+    FoundationFoodItem:
+      required:
+      - fdcId
+      - dataType
+      - description
+      properties:
+        fdcId:
+          type: integer
+          example: 747448
+        dataType:
+          type: string
+          example: Foundation
+        description:
+          type: string
+          example: Strawberries, raw
+        foodClass:
+          type: string
+          example: FinalFood
+        footNote:
+          type: string
+          example: Source number reflects the actual number of samples analyzed for a nutrient. Repeat nutrient analyses may have been done on the same sample with the values shown.
+        isHistoricalReference:
+          type: boolean
+          example: false
+        ndbNumber:
+          type: string
+          example: '9316'
+        publicationDate:
+          type: string
+          example: 12/16/2019
+        scientificName:
+          type: string
+          example: Fragaria X ananassa
+        foodCategory:
+          $ref: '#/components/schemas/FoodCategory'
+        foodComponents:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodComponent'
+        foodNutrients:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodNutrient'
+        foodPortions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodPortion'
+        inputFoods:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFoodFoundation'
+        nutrientConversionFactors:
+          type: array
+          items:
+            $ref: '#/components/schemas/NutrientConversionFactors'
+    SearchResult:
+      properties:
+        foodSearchCriteria:
+          description: A copy of the criteria that were used in the search.
+          type: object
+          items:
+            $ref: '#/components/schemas/FoodSearchCriteria'
+        totalHits:
+          description: The total number of foods found matching the search criteria.
+          type: integer
+          example: 1034
+        currentPage:
+          description: The current page of results being returned.
+          type: integer
+        totalPages:
+          description: The total number of pages found matching the search criteria.
+          type: integer
+        foods:
+          description: The list of foods found matching the search criteria. See Food Fields below.
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResultFood'
+    FoodListCriteria:
+      type: object
+      description: JSON for request body of 'list' POST request
+      properties:
+        dataType:
+          description: Optional. Filter on a specific data type; specify one or more values in an array.
+          type: array
+          items:
+            type: string
+            enum:
+            - Branded
+            - Foundation
+            - Survey (FNDDS)
+            - SR Legacy
+          minItems: 1
+          maxItems: 4
+          example:
+          - Foundation
+          - SR Legacy
+        pageSize:
+          description: Optional. Maximum number of results to return for the current page. Default is 50.
+          type: integer
+          minimum: 1
+          maximum: 200
+          example: 25
+        pageNumber:
+          description: Optional. Page number to retrieve. The offset into the overall result set is expressed as (pageNumber * pageSize)
+          type: integer
+          example: 2
+        sortBy:
+          description: Optional. Specify one of the possible values to sort by that field. Note, dataType.keyword will be dataType and lowercaseDescription.keyword will be description in future releases.
+          type: string
+          enum:
+          - dataType.keyword
+          - lowercaseDescription.keyword
+          - fdcId
+          - publishedDate
+        sortOrder:
+          description: Optional. The sort direction for the results. Only applicable if sortBy is specified.
+          type: string
+          enum:
+          - asc
+          - desc
+    InputFoodFoundation:
+      description: applies to Foundation foods. Not all inputFoods will have all fields.
+      properties:
+        id:
+          type: integer
+          example: 45551
+        foodDescription:
+          type: string
+          example: Beef, Tenderloin Roast, select, roasted, comp5, lean (34BLTR)
+        inputFood:
+          $ref: '#/components/schemas/SampleFoodItem'
+    RetentionFactor:
+      properties:
+        id:
+          type: integer
+          example: 235
+        code:
+          type: integer
+          example: 3460
+        description:
+          type: string
+          example: VEG, ROOTS, ETC, SAUTEED
+    MeasureUnit:
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 999
+        abbreviation:
+          type: string
+          example: undetermined
+        name:
+          type: string
+          example: undetermined
     Nutrient:
       description: a food nutrient
       properties:
@@ -1339,6 +986,359 @@ components:
         unitName:
           type: string
           example: g
+    AbridgedFoodNutrient:
+      required:
+      - id
+      - nutrientNumber
+      - unit
+      properties:
+        number:
+          type: integer
+          format: uint
+          example: 303
+        name:
+          type: string
+          example: Iron, Fe
+        amount:
+          type: number
+          format: float
+          example: 0.53
+        unitName:
+          type: string
+          example: mg
+        derivationCode:
+          type: string
+          example: LCCD
+        derivationDescription:
+          type: string
+          example: Calculated from a daily value percentage per serving size measure
+    FoodNutrient:
+      required:
+      - id
+      - nutrientNumber
+      - unit
+      properties:
+        id:
+          type: integer
+          format: uint
+          example: 167514
+        amount:
+          type: number
+          format: float
+          example: 0E-8
+        dataPoints:
+          type: integer
+          format: int32
+          example: 49
+        min:
+          type: number
+          format: float
+          example: 73.73
+        max:
+          type: number
+          format: float
+          example: 91.8
+        median:
+          type: number
+          format: float
+          example: 90.3
+        type:
+          type: string
+          example: FoodNutrient
+        nutrient:
+          $ref: '#/components/schemas/Nutrient'
+        foodNutrientDerivation:
+          $ref: '#/components/schemas/FoodNutrientDerivation'
+        nutrientAnalysisDetails:
+          $ref: '#/components/schemas/NutrientAnalysisDetails'
+    SearchResultFood:
+      type: object
+      required:
+      - fdcId
+      - description
+      properties:
+        fdcId:
+          description: Unique ID of the food.
+          type: integer
+          example: 45001529
+        dataType:
+          description: The type of the food data.
+          type: string
+          example: Branded
+        description:
+          description: The description of the food.
+          type: string
+          example: BROCCOLI
+        foodCode:
+          description: Any A unique ID identifying the food within FNDDS.
+          type: string
+        foodNutrients:
+          type: array
+          items:
+            $ref: '#/components/schemas/AbridgedFoodNutrient'
+        publicationDate:
+          description: Date the item was published to FDC.
+          type: string
+          example: 4/1/2019
+        scientificName:
+          description: The scientific name of the food.
+          type: string
+        brandOwner:
+          description: Brand owner for the food. Only applies to Branded Foods.
+          type: string
+          example: Supervalu, Inc.
+        gtinUpc:
+          description: GTIN or UPC code identifying the food. Only applies to Branded Foods.
+          type: string
+          example: 041303020937
+        ingredients:
+          description: The list of ingredients (as it appears on the product label). Only applies to Branded Foods.
+          type: string
+        ndbNumber:
+          description: Unique number assigned for foundation foods. Only applies to Foundation and SRLegacy Foods.
+          type: string
+        additionalDescriptions:
+          description: Any additional descriptions of the food.
+          type: string
+          example: Coon; sharp cheese; Tillamook; Hoop; Pioneer; New York; Wisconsin; Longhorn
+        allHighlightFields:
+          description: allHighlightFields
+          type: string
+        score:
+          description: Relative score indicating how well the food matches the search criteria.
+          type: number
+          format: float
+    FoodPortion:
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 135806
+        amount:
+          type: number
+          format: float
+          example: 1
+        dataPoints:
+          type: integer
+          format: int32
+          example: 9
+        gramWeight:
+          type: number
+          format: float
+          example: 91
+        minYearAcquired:
+          type: integer
+          example: 2011
+        modifier:
+          type: string
+          example: '10205'
+        portionDescription:
+          type: string
+          example: 1 cup
+        sequenceNumber:
+          type: integer
+          example: 1
+        measureUnit:
+          $ref: '#/components/schemas/MeasureUnit'
+    NutrientAcquisitionDetails:
+      type: object
+      properties:
+        sampleUnitId:
+          type: integer
+          example: 321632
+        purchaseDate:
+          type: string
+          example: 12/2/2005
+        storeCity:
+          type: string
+          example: TRUSSVILLE
+        storeState:
+          type: string
+          example: AL
+    FoodCategory:
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 11
+        code:
+          type: string
+          example: '1100'
+        description:
+          type: string
+          example: Vegetables and Vegetable Products
+    AbridgedFoodItem:
+      type: object
+      required:
+      - fdcId
+      - dataType
+      - description
+      properties:
+        dataType:
+          type: string
+          example: Branded
+        description:
+          type: string
+          example: NUT 'N BERRY MIX
+        fdcId:
+          type: integer
+          example: 534358
+        foodNutrients:
+          type: array
+          items:
+            $ref: '#/components/schemas/AbridgedFoodNutrient'
+        publicationDate:
+          type: string
+          example: 4/1/2019
+        brandOwner:
+          type: string
+          description: only applies to Branded Foods
+          example: Kar Nut Products Company
+        gtinUpc:
+          type: string
+          description: only applies to Branded Foods
+          example: 077034085228
+        ndbNumber:
+          type: string
+          description: only applies to Foundation and SRLegacy Foods
+          example: '7954'
+        foodCode:
+          type: string
+          description: only applies to Survey Foods
+          example: '27415110'
+    NutrientConversionFactors:
+      properties:
+        type:
+          type: string
+          example: .ProteinConversionFactor
+        value:
+          type: number
+          format: float
+          example: 6.25
+    FoodNutrientSource:
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 9
+        code:
+          type: string
+          example: '12'
+        description:
+          type: string
+          example: Manufacturer's analytical; partial documentation
+    SRLegacyFoodItem:
+      required:
+      - fdcId
+      - dataType
+      - description
+      properties:
+        fdcId:
+          type: integer
+          example: 170379
+        dataType:
+          type: string
+          example: SR Legacy
+        description:
+          type: string
+          example: Broccoli, raw
+        foodClass:
+          type: string
+          example: FinalFood
+        isHistoricalReference:
+          type: boolean
+          example: true
+        ndbNumber:
+          type: string
+          example: '11090'
+        publicationDate:
+          type: string
+          example: 4/1/2019
+        scientificName:
+          type: string
+          example: Brassica oleracea var. italica
+        foodCategory:
+          $ref: '#/components/schemas/FoodCategory'
+        foodNutrients:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodNutrient'
+        nutrientConversionFactors:
+          type: array
+          items:
+            $ref: '#/components/schemas/NutrientConversionFactors'
+    NutrientAnalysisDetails:
+      properties:
+        subSampleId:
+          type: integer
+          example: 343866
+        amount:
+          type: number
+          format: float
+          example: 0E-8
+        nutrientId:
+          type: integer
+          example: 1005
+        labMethodDescription:
+          type: string
+          example: 10.2135/cropsci2017.04.0244
+        labMethodOriginalDescription:
+          type: string
+        labMethodLink:
+          type: string
+          format: url
+          example: https://doi.org/10.2135/cropsci2017.04.0244
+        labMethodTechnique:
+          type: string
+          example: DOI for Beans
+        nutrientAcquisitionDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/NutrientAcquisitionDetails'
+    SurveyFoodItem:
+      required:
+      - fdcId
+      - dataType
+      - description
+      properties:
+        fdcId:
+          type: integer
+          example: 337985
+        datatype:
+          type: string
+          example: Survey (FNDDS)
+        description:
+          type: string
+          example: Beef curry
+        endDate:
+          type: string
+          example: 12/31/2014
+        foodClass:
+          type: string
+          example: Survey
+        foodCode:
+          type: string
+          example: '27116100'
+        publicationDate:
+          type: string
+          example: 4/1/2019
+        startDate:
+          type: string
+          example: 1/1/2013
+        foodAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodAttribute'
+        foodPortions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoodPortion'
+        inputFoods:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFoodSurvey'
+        wweiaFoodCategory:
+          $ref: '#/components/schemas/WweiaFoodCategory'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
