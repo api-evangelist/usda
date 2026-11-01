@@ -64,25 +64,155 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-US Department of Agriculture public APIs covering agricultural statistics, food and nutrition data, market news, food safety inspection records, crop monitoring, and geospatial services.
+The US Department of Agriculture provides a suite of free public REST APIs covering agricultural statistics, food and nutrition data, market news, food safety inspection records, crop and vegetation monitoring, and geospatial services. APIs are accessed through api.data.gov and agency-specific portals, all requiring a free API key.
 
-## APIs
+**Areas:** Agriculture · Food Safety · Nutrition · Statistics · Geospatial · Market News · Federal Government
 
-- **FoodData Central API** - Nutrition database with 250,000+ food items (https://fdc.nal.usda.gov/api-guide/)
-- **NASS Quick Stats API** - Agricultural statistics and Census of Agriculture data (https://quickstats.nass.usda.gov/api)
-- **ERS ARMS Data API** - Agriculture Resource Management Survey economic data (https://www.ers.usda.gov/developer/data-apis/arms-data-api)
-- **AMS MyMarketNews MARS API** - Commodity prices and agricultural market news (https://mymarketnews.ams.usda.gov/mymarketnews-api)
-- **NASS CroplandCROS API** - Cropland Data Layer geospatial services (https://www.nass.usda.gov/developer/index.php)
-- **Forest Service Geospatial REST API** - ArcGIS-based forest and land data services (https://data-usfs.hub.arcgis.com/)
-- **FSIS MPI Directory API** - Meat, poultry, and egg inspection establishment data (https://www.fsis.usda.gov/science-data/developer-resources/mpi-api)
+## USDA on APIs.io
 
-## Access
+Everything profiled for USDA is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/usda/](https://apis.io/providers/usda/)** — or go straight to one of the APIs or properties below.
 
-All APIs are free. Most require a free API key via [api.data.gov](https://api.data.gov/) or the agency-specific registration portal.
+### APIs (7)
 
-## Links
+- [USDA NASS Quick Stats API](https://apis.io/apis/usda/usda-nass-quick-stats-api/) — Programmatic access to official US agricultural statistics from the National Agricultural Statistics Service, including crop production estimates, livestock…
+- [USDA ERS ARMS Data API](https://apis.io/apis/usda/usda-ers-arms-data-api/) — Economic Research Service API providing access to data from the Agriculture Resource Management Survey (ARMS), covering farm finances, production practices,…
+- [USDA AMS MyMarketNews MARS API](https://apis.io/apis/usda/usda-ams-mymarketnews-mars-api/) — Market Analysis Reporting System (MARS) API providing programmatic access to USDA Agricultural Marketing Service commodity price and market news data…
+- [USDA NASS CroplandCROS API](https://apis.io/apis/usda/usda-nass-croplandcros-api/) — Geospatial API serving Cropland Data Layer (CDL) and related geospatial data at 30-meter resolution covering the continental US from 2008 onward, with…
+- [USDA Forest Service Geospatial REST API](https://apis.io/apis/usda/usda-forest-service-geospatial-rest-api/) — ArcGIS Server REST API providing access to USDA Forest Service nationwide geospatial datasets including forest boundaries, land status, fire occurrence, and…
+- [USDA FSIS MPI Directory API](https://apis.io/apis/usda/usda-fsis-mpi-directory-api/) — Food Safety and Inspection Service API providing real-time access to the Meat, Poultry and Egg Product Inspection Directory, including establishment…
+- [USDA FDC API](https://apis.io/apis/usda/usda-fdc-api/) — endpoints to retrieve nutrient data
 
-- Website: https://www.usda.gov/
-- Developer Portal: https://www.ers.usda.gov/developer/
-- GitHub: https://github.com/USDA
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/usda/refs/heads/main/apis.yml
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Usda Agentic Access](https://apis.io/agentic-access/usda/usda-agentic-access/)
+
+#### JSON Schema (1)
+
+The data models the API reads and writes.
+
+- [FoodData Central Food Item](https://apis.io/schemas/usda/usda-fooddata-central-food-item/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Usda Context](https://apis.io/jsonld/usda/usda-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [USDA Vocabulary](https://apis.io/vocabularies/usda/usda-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Usda Fooddata Central Food Item Example](https://apis.io/examples/usda/usda-fooddata-central-food-item-example/)
+- [Usda Fooddata Central Food Search Example](https://apis.io/examples/usda/usda-fooddata-central-food-search-example/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Food Data Central FDC API](https://apis.io/collections/usda/open-usda-fdc-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [USDA — jsonschema rules](https://apis.io/rules/usda/usda-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Usda Authentication](https://apis.io/security/usda/usda-authentication/)
+- [Usda Domain Security](https://apis.io/security/usda/usda-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Usda Plans Pricing](https://apis.io/plans/usda/usda-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Usda Rate Limits](https://apis.io/rate-limits/usda/usda-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Usda Finops](https://apis.io/finops/usda/usda-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.usda.gov/)
+- [Documentation](https://www.ers.usda.gov/developer/)
+- [Pricing](https://api.data.gov/docs/developer-manual/)
+- [Blog](https://www.usda.gov/media/blog)
+- [Status](https://api.data.gov/status/)
+
+## API Evangelist rating
+
+**Kin Score 32.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 55.2 |
+| Contract governance | 9.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 18.4 |
+
+**Agent readiness 20.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/usda/](https://apis.io/providers/usda/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for USDA: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/usda/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
